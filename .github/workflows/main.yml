@@ -1,14 +1,25 @@
-name: Copy To Branches
-on:
-  workflow_dispatch:
+name: Generate Podcast Feeds
+on: [push]
 jobs:
-  copy-to-branches:
+  builds:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name Checkout Repo
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          fetch-depth: 0
-      - name: Copy To Branches Action
-        uses: planetoftheweb/copy-to-branches@v1.2
-        env:
-          key: main
+          python-version: '3.10'
+      - name Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyhaml
+      - name Run the Generator
+        run: python feed.py
+      - name Push to Repo
+        run: |
+          git config user.name Chuck Schwing
+          git config user.email chuckschwing@proton.me
+          git add .
+          git commit -m "Modified feed"
+          git push
