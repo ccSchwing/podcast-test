@@ -22,7 +22,6 @@ jobs:
           git config user.name Chuck Schwing
           git config user.email chuckschwing@proton.me
           git checkout 01_02b
-          ## python feed.py
           pwd
           ls -lRa
           git add .
