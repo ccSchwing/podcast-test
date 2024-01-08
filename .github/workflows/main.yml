@@ -16,14 +16,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml
       - name: Run the Generator
-        run: python feed.py
+        run: |
+          echo "Running feed.py in `pwd `"
+          python feed.py
+          ls -otr
       - name: Push to Repo
         run: |
           git config user.name Chuck Schwing
           git config user.email chuckschwing@proton.me
           git checkout 01_02b
           pwd
-          ls -lRa
+          ls -la
           git add .
           git commit -m "Modified feed"
           git push
