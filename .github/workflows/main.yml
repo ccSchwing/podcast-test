@@ -23,7 +23,7 @@ jobs:
           git config user.email chuckschwing@proton.me
           git checkout 01_02b
           pwd
-          ls -lRa
+          ls -la
           git add .
           git commit -m "Modified feed"
           git push
